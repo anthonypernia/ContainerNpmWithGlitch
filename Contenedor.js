@@ -1,15 +1,11 @@
 
 const fs = require('fs');
-const { argv } = require('process');
-
-
 class Contenedor{
     constructor(path){
         this.path = path;
     }
 
     getAll(){
-        //La coloco en sincronico porque el enunciado dice que tiene que devolver un array
         try {
             const dataFromFile = fs.readFileSync(this.path, 'utf8');
             return JSON.parse(dataFromFile);
@@ -61,7 +57,6 @@ class Contenedor{
 
      save(obj){
         try{
-                    ///Aca leo el txt para poder obtener el ultimo id y seguir la secuencia
             const jsonObj =  this.getAll();
             if (jsonObj.length > 0){
                 const lastId = jsonObj[jsonObj.length - 1].id;
@@ -92,19 +87,5 @@ class Contenedor{
         }
     }
 }
-
-
-//const contenedor = new Contenedor(argv[2]);
-//console.log(contenedor.getAll());
-//const obj =     {
-//    title: 'react',
-//    price: '$1.5555',
-//    image: "https://github.com/anthonyperniah/anthonyperniah-shop/blob/master/src/img/react1.png?raw=true",
-//}
-//contenedor.save(obj);
-//console.log(contenedor.getById(1));
-//contenedor.deleteById(2);
-//contenedor.deleteAll();
-
 
 module.exports = Contenedor;
