@@ -2,7 +2,6 @@
 let express = require('express');
 let Contenedor = require('./Contenedor');
 
-
 let app = express();
 const PORT = 8080
 let pathData = "./data.txt"
