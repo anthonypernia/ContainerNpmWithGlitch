@@ -1,44 +1,36 @@
-let http = require('http');
-let ngrok = require('ngrok');
+
 let express = require('express');
+let Contenedor = require('./Contenedor');
 
-///Server con http
-
-//const server = http.createServer((req, res) => {
-//    res.writeHead(200, { 'Content-Type': 'text/plain' });
-//    res.end('Hello World\n');
-//});
-//let connectedServer = server.listen(4000, () => {
-//    console.log(`Server is running on port = ${connectedServer.address().port}`);
-//});
-
-///Server con express
 
 let app = express();
+const PORT = 8080
+let pathData = "./data.txt"
+const contenedor = new Contenedor(pathData);
 
-app.listen(5000, () => {
-    console.log(`Estamos conectados `);
+app.listen(PORT, () => {
+    console.log(`We are connected in port = ${PORT}`);
 });
 app.on('error', err => {
-    console.log(err);
+    console.log(`We have an error =>  ${err}`);
 });
 app.get('/', (req, res) => {
-    ////PODEMOS ENVIAR VARIOS TIPOS DE RESPUESTA
-    //res.send('Hello World\n  1');
-    //res.json({
-    //    name: 'Juan',
-    //    lastName: 'Perez'
-    //});
-    res.send('Hello World\n');
+    res.send(`<h1> Hi!</h1>
+                <h2>You can use three entry points</h2>
+                <ul>
+                    <br>
+                    <li> <a href="/">This "/" ,  if you don't want anything</a> </li>
+                    <br>
+                    <li> <a href="/productos">This "/productos" if you want a products list</a> </li>
+                    <br>
+                    <li> <a href="/productoRandom">This "/productoRandom" if you want a rambdom product from products list</a> </li>
+                </ul>`);
 });
 
-app.get('/user', (req, res) => {
-    res.send('Hello User\n');
+app.get('/productos', (req, res) => {
+    res.json( contenedor.getAll() );
 });
 
-
-
-(async () => {
-    let url = await ngrok.connect(5000);
-    console.log(url);
-})();
+app.get('/productoRandom', (req, res) => {
+    res.json( contenedor.getRandomItem() );
+});

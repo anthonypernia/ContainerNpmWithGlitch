@@ -1,5 +1,7 @@
+
 const fs = require('fs');
 const { argv } = require('process');
+
 
 class Contenedor{
     constructor(path){
@@ -79,12 +81,21 @@ class Contenedor{
             console.log(err);
         }
     }
+
+    getRandomItem(){
+        try{
+            const data = this.getAll();
+            const randomIndex = Math.floor(Math.random() * data.length);
+            return data[randomIndex];
+        }catch(err){
+            console.log(err);
+        }
+    }
 }
 
 
-
-const contenedor = new Contenedor(argv[2]);
-console.log(contenedor.getAll());
+//const contenedor = new Contenedor(argv[2]);
+//console.log(contenedor.getAll());
 //const obj =     {
 //    title: 'react',
 //    price: '$1.5555',
@@ -94,3 +105,6 @@ console.log(contenedor.getAll());
 //console.log(contenedor.getById(1));
 //contenedor.deleteById(2);
 //contenedor.deleteAll();
+
+
+module.exports = Contenedor;

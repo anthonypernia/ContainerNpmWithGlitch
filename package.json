@@ -1,20 +1,29 @@
 {
-  "name": "pruebas_server",
+  "name": "desafio_server_con_express",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "nodemon index.js",
-    "start": "node index.js"
+    "dev": "nodemon index.js"
   },
-  "author": "",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/anthonyperniah/ContainerNpmWithGlitch.git"
+  },
+  "author": "anthony pernia",
   "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/anthonyperniah/ContainerNpmWithGlitch/issues"
+  },
+  "homepage": "https://github.com/anthonyperniah/ContainerNpmWithGlitch#readme",
   "devDependencies": {
     "nodemon": "^2.0.13"
   },
   "dependencies": {
     "express": "^4.17.1",
+    "fs": "^0.0.1-security",
+    "http": "^0.0.1-security",
     "ngrok": "^4.2.2"
   }
 }
